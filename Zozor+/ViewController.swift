@@ -52,10 +52,10 @@ class ViewController: UIViewController {
     // MARK: - Action
 
     @IBAction func tappedNumberButton(_ sender: UIButton) {
-        for (i, numberButton) in numberButtons.enumerated() {
-            if sender == numberButton {
-                addNewNumber(i)
-            }
+        if let num = numberButtons.sorted(by: { $0.tag < $1.tag })
+        .enumerated()
+        .first(where: { sender.tag == $0.element.tag } ) {
+            addNewNumber(num.offset)
         }
     }
 
