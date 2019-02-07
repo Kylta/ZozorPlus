@@ -108,7 +108,6 @@ class CalculatorBrainModel {
             // Add number
             text += stringNumber
         }
-        
         return text
     }
 

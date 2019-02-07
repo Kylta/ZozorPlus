@@ -55,10 +55,10 @@ class ViewController: UIViewController {
             createAlertController(error: calculatorBrain.isExpressionCorrect!)
         case .some(.correctExpression):
             createAlertController(error: calculatorBrain.isExpressionCorrect!)
+        case .some(.incorrectExpression):
+            createAlertController(error: calculatorBrain.isExpressionCorrect!)
         case .none:
-            textView.text = calculatorBrain.calculateTotal()
-            calculatorBrain.clear()
-        default: break
+            calculate()
         }
     }
 
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
         if calculatorBrain.canAddOperator {
             textView.text = calculatorBrain.addNewOperator(_operator)
         } else {
-            createAlertController(error: .correctExpression)
+            createAlertController(error: .incorrectExpression)
         }
     }
 
@@ -74,6 +74,11 @@ class ViewController: UIViewController {
         let alertVC = UIAlertController(title: error.title, message: error.message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alertVC, animated: true, completion: nil)
+    }
+
+    fileprivate func calculate() {
+        textView.text = calculatorBrain.calculateTotal()
+        calculatorBrain.clear()
     }
 
     fileprivate func clear() {
