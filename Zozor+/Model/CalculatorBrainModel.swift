@@ -56,9 +56,12 @@ class CalculatorBrainModel {
         return true
     }
 
-    func removeLastNumbers() {
-        stringNumbers.removeLast()
-        operators.removeLast()
+    func removeLastNumbers() -> String {
+        if stringNumbers.count > 1 {
+            stringNumbers.removeLast()
+            operators.removeLast()
+        }
+        return updateDisplay()
     }
 
     func clear() {

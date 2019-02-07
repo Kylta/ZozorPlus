@@ -42,8 +42,7 @@ class ViewController: UIViewController {
         case "AC":
             clear()
         case "C":
-            calculatorBrain.stringNumbers.count > 1 ? calculatorBrain.removeLastNumbers() : clear()
-            textView.text = calculatorBrain.updateDisplay()
+            textView.text = calculatorBrain.removeLastNumbers()
         case ".":
             verifyCanAddOperator(_operator: sender.currentTitle!)
         default: break
