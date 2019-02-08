@@ -98,7 +98,40 @@ class CountOnMeControllerTests: XCTestCase {
         button.sendActions(for: .touchUpInside)
         sut.performOperator(button)
         XCTAssertEqual(sut.textView.text, "")
+    }
 
+    func test_calcul_displayResult() {
+        let (sut, button) = expect(tag: 1)
+        button.setTitle("+", for: .normal)
+        button.sendActions(for: .touchUpInside)
+        sut.performOperator(button)
+        button.tag = 2
+        button.sendActions(for: .touchUpInside)
+        sut.tappedNumberButton(button)
+        sut.equal()
+        XCTAssertEqual(sut.textView.text, "3.0")
+    }
+
+    func test_errors_displayedInViewController() {
+        let sut1 = makeSUT()
+        sut1.equal()
+        XCTAssertEqual(sut1.calculatorBrain.isExpressionCorrect, .newCalcul)
+
+        let (sut2, button) = expect(tag: 1)
+        button.setTitle("+", for: .normal)
+        button.sendActions(for: .touchUpInside)
+        sut2.performOperator(button)
+        sut2.equal()
+        XCTAssertEqual(sut2.calculatorBrain.isExpressionCorrect, .incorrectExpression)
+
+        let (sut3, button3) = expect(tag: 1)
+        button3.setTitle("+", for: .normal)
+        button3.sendActions(for: .touchUpInside)
+        sut3.performOperator(button)
+        button3.setTitle("+", for: .normal)
+        button3.sendActions(for: .touchUpInside)
+        sut3.performOperator(button)
+        XCTAssertEqual(sut2.calculatorBrain.isExpressionCorrect, .incorrectExpression)
     }
 
     private func expect(tag: Int) -> (sut: ViewController, button: UIButton) {
