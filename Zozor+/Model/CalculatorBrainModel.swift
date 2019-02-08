@@ -11,7 +11,6 @@ import Foundation
 class CalculatorBrainModel {
     var stringNumbers: [String] = [String()]
     var operators: [String] = ["+"]
-    var index = 0
     var result = ""
 
     var isExpressionCorrect: Error? {
@@ -70,7 +69,6 @@ class CalculatorBrainModel {
     func clear() {
         stringNumbers = [String()]
         operators = ["+"]
-        index = 0
     }
 
     func addNewOperator(_ newOperator: String) -> String {
