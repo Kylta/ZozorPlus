@@ -41,7 +41,8 @@ class Zozor_Tests: XCTestCase {
 
         // Act
         sut.addNewNumber(.number(2))
-        XCTAssertNil(sut.isExpressionCorrect)
+        XCTAssertTrue(sut.canAddOperator)
+        XCTAssertEqual(sut.isExpressionCorrect, .correct)
         _ = sut.addNewOperator("-")
         XCTAssertFalse(sut.canAddOperator)
         sut.addNewNumber(.number(2))
@@ -64,7 +65,7 @@ class Zozor_Tests: XCTestCase {
         _ = sut.addNewOperator("-")
         XCTAssertEqual(sut.isExpressionCorrect, .correctExpression)
         sut.addNewNumber(.number(2))
-        sut.addNewNumber(.dot("."))
+        _ = sut.addNewOperator(".")
         sut.addNewNumber(.number(6))
         sut.calculateTotal()
 
@@ -88,6 +89,38 @@ class Zozor_Tests: XCTestCase {
         XCTAssertEqual(sut.operators, ["+"])
         XCTAssertFalse(sut.canAddOperator)
     }
+
+    func test_updateDisplay_rendersString() {
+        // Arrange
+        let sut = makeSUT()
+
+        // Act
+        sut.addNewNumber(.number(2))
+        XCTAssertEqual(sut.isExpressionCorrect, .correct)
+        _ = sut.addNewOperator("-")
+        XCTAssertFalse(sut.canAddOperator)
+        sut.addNewNumber(.number(2))
+
+        // Assert
+        XCTAssertEqual(sut.updateDisplay(), "2-2")
+    }
+
+    func test_removeLastNumbers_removeLastNumberAndLastOperator() {
+        // Arrange
+        let sut = makeSUT()
+
+        // Act
+        sut.addNewNumber(.number(2))
+        XCTAssertEqual(sut.isExpressionCorrect, .correct)
+        _ = sut.addNewOperator("-")
+        XCTAssertFalse(sut.canAddOperator)
+        sut.addNewNumber(.number(2))
+        _ = sut.removeLastNumbers()
+
+        // Assert
+        XCTAssertEqual(sut.updateDisplay(), "2")
+    }
+
     fileprivate func makeSUT() -> CalculatorBrainModel {
         return CalculatorBrainModel()
     }
