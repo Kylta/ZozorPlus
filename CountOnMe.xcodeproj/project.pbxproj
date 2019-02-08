@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4651C387220B7295001F9ADF /* CalculatorBrainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651C386220B7295001F9ADF /* CalculatorBrainModel.swift */; };
+		4651C38E220E06D9001F9ADF /* CountOnMeControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651C38C220E0687001F9ADF /* CountOnMeControllerTests.swift */; };
 		C926DADD1D7581BB00477020 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C926DADC1D7581BB00477020 /* AppDelegate.swift */; };
 		C926DADF1D7581BB00477020 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C926DADE1D7581BB00477020 /* ViewController.swift */; };
 		C926DAE21D7581BB00477020 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C926DAE01D7581BB00477020 /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		4651C386220B7295001F9ADF /* CalculatorBrainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorBrainModel.swift; sourceTree = "<group>"; };
+		4651C38C220E0687001F9ADF /* CountOnMeControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountOnMeControllerTests.swift; sourceTree = "<group>"; };
 		C926DAD91D7581BB00477020 /* CountOnMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountOnMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C926DADC1D7581BB00477020 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C926DADE1D7581BB00477020 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				C926DAF11D7581BB00477020 /* CountOnMeModelTests.swift */,
+				4651C38C220E0687001F9ADF /* CountOnMeControllerTests.swift */,
 				C926DAF31D7581BB00477020 /* Info.plist */,
 			);
 			name = CountOnMeTests;
@@ -250,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4651C38E220E06D9001F9ADF /* CountOnMeControllerTests.swift in Sources */,
 				C926DAF21D7581BB00477020 /* CountOnMeModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
