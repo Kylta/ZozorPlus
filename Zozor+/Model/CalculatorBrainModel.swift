@@ -8,36 +8,13 @@
 
 import Foundation
 
-enum CalculError: Swift.Error {
-    case newCalcul
-    case correctExpression
-    case incorrectExpression
-
-    var title: String {
-        switch self {
-        case .newCalcul, .correctExpression, .incorrectExpression:
-            return "Zéro!"
-        }
-    }
-
-    var message: String {
-        switch self {
-        case .newCalcul:
-            return "Démarrez un nouveau calcul"
-        case .correctExpression:
-            return "Entrez une expression correcte !"
-        case .incorrectExpression:
-            return "Expression incorrect !"
-        }
-    }
-}
-
 class CalculatorBrainModel {
     var stringNumbers: [String] = [String()]
     var operators: [String] = ["+"]
     var index = 0
+    var result = ""
 
-    var isExpressionCorrect: CalculError? {
+    var isExpressionCorrect: Error? {
         if let stringNumber = stringNumbers.last, stringNumber.isEmpty {
             if stringNumbers.count == 1 {
                 return .newCalcul
@@ -54,6 +31,32 @@ class CalculatorBrainModel {
             return false
         }
         return true
+    }
+
+    enum ExpressionType {
+        case number(Int)
+        case dot(String)
+    }
+
+    enum Error: Swift.Error {
+        case newCalcul
+        case correctExpression
+        case incorrectExpression
+
+        var title: String {
+            return "Zéro!"
+        }
+
+        var message: String {
+            switch self {
+            case .newCalcul:
+                return "Démarrez un nouveau calcul"
+            case .correctExpression:
+                return "Entrez une expression correcte !"
+            case .incorrectExpression:
+                return "Expression incorrect !"
+            }
+        }
     }
 
     func removeLastNumbers() -> String {
@@ -78,11 +81,6 @@ class CalculatorBrainModel {
             stringNumbers.append("")
         }
         return updateDisplay()
-    }
-
-    enum ExpressionType {
-        case number(Int)
-        case dot(String)
     }
 
     func addNewNumber(_ newNumber: ExpressionType) {
@@ -111,7 +109,7 @@ class CalculatorBrainModel {
         return text
     }
 
-    func calculateTotal() -> String {
+    func calculateTotal() {
         var total = 0.0
         for (i, stringNumber) in stringNumbers.enumerated() {
             if let number = Double(stringNumber) {
@@ -122,6 +120,14 @@ class CalculatorBrainModel {
                 }
             }
         }
-        return "\(total)"
+
+        self.result = String(Double(round(1000*total)/1000))
+        sendNotification()
+    }
+
+    fileprivate func sendNotification() {
+        let name = Notification.Name(rawValue: "resultReady")
+        let notification = Notification(name: name)
+        NotificationCenter.default.post(notification)
     }
 }
