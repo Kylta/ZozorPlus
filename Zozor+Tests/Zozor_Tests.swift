@@ -20,6 +20,36 @@ class Zozor_Tests: XCTestCase {
         XCTAssertFalse(sut.canAddOperator)
     }
 
+    func test_calcul_plusOperator() {
+        // Arrange
+        let sut = makeSUT()
+
+        // Act
+        sut.addNewNumber(.number(2))
+        _ = sut.addNewOperator("+")
+        XCTAssertFalse(sut.canAddOperator)
+        sut.addNewNumber(.number(2))
+        sut.calculateTotal()
+
+        // Assert
+        XCTAssertEqual(sut.result, "4.0")
+    }
+
+    func test_calcul_minusOperator() {
+        // Arrange
+        let sut = makeSUT()
+
+        // Act
+        sut.addNewNumber(.number(2))
+        _ = sut.addNewOperator("-")
+        XCTAssertFalse(sut.canAddOperator)
+        sut.addNewNumber(.number(2))
+        sut.calculateTotal()
+
+        // Assert
+        XCTAssertEqual(sut.result, "0.0")
+    }
+
     fileprivate func makeSUT() -> CalculatorBrainModel {
         return CalculatorBrainModel()
     }
