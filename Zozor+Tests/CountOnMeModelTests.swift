@@ -1,5 +1,5 @@
 //
-//  Zozor_Tests.swift
+//  CountOnMeModelTests.swift
 //  CountOnMeTests
 //
 //  Created by Ambroise COLLON on 30/08/2016.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import CountOnMe
 
-class Zozor_Tests: XCTestCase {
+class CountOnMeModelTests: XCTestCase {
 
     func test_initCalculatorBrain_arrayNumbersContainsEmptyStringAndArrayOperatorContainPlus() {
         let sut = makeSUT()
