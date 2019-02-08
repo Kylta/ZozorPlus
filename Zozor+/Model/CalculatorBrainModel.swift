@@ -18,7 +18,7 @@ class CalculatorBrainModel {
             if stringNumbers.count == 1 {
                 return .newCalcul
             } else {
-                return .correctExpression
+                return .incorrectExpression
             }
         }
         return .correct
@@ -39,7 +39,6 @@ class CalculatorBrainModel {
 
     enum Error: Swift.Error {
         case newCalcul
-        case correctExpression
         case incorrectExpression
         case correct
 
@@ -51,10 +50,8 @@ class CalculatorBrainModel {
             switch self {
             case .newCalcul:
                 return "Démarrez un nouveau calcul"
-            case .correctExpression:
-                return "Entrez une expression correcte !"
             case .incorrectExpression:
-                return "Expression incorrect !"
+                return "Entrez une expression correcte !"
             case .correct:
                 return ""
             }

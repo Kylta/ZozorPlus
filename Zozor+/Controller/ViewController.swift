@@ -62,8 +62,6 @@ class ViewController: UIViewController {
         switch calculatorBrain.isExpressionCorrect {
         case .newCalcul:
             createAlertController(error: calculatorBrain.isExpressionCorrect)
-        case .correctExpression:
-            createAlertController(error: calculatorBrain.isExpressionCorrect)
         case .incorrectExpression:
             createAlertController(error: calculatorBrain.isExpressionCorrect)
         case .correct:

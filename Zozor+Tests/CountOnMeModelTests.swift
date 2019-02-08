@@ -63,7 +63,7 @@ class CountOnMeModelTests: XCTestCase {
         _ = sut.addNewOperator("-")
         XCTAssertFalse(sut.canAddOperator)
         _ = sut.addNewOperator("-")
-        XCTAssertEqual(sut.isExpressionCorrect, .correctExpression)
+        XCTAssertEqual(sut.isExpressionCorrect, .incorrectExpression)
         sut.addNewNumber(.number(2))
         _ = sut.addNewOperator(".")
         sut.addNewNumber(.number(6))
