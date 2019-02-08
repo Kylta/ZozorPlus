@@ -13,7 +13,7 @@ class CalculatorBrainModel {
     var operators: [String] = ["+"]
     var result = ""
 
-    var isExpressionCorrect: Error? {
+    var isExpressionCorrect: Error {
         if let stringNumber = stringNumbers.last, stringNumber.isEmpty {
             if stringNumbers.count == 1 {
                 return .newCalcul
@@ -21,7 +21,7 @@ class CalculatorBrainModel {
                 return .correctExpression
             }
         }
-        return nil
+        return .correct
     }
 
     var canAddOperator: Bool {
@@ -41,6 +41,7 @@ class CalculatorBrainModel {
         case newCalcul
         case correctExpression
         case incorrectExpression
+        case correct
 
         var title: String {
             return "Zéro!"
@@ -54,6 +55,8 @@ class CalculatorBrainModel {
                 return "Entrez une expression correcte !"
             case .incorrectExpression:
                 return "Expression incorrect !"
+            case .correct:
+                return ""
             }
         }
     }

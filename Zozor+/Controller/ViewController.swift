@@ -60,13 +60,13 @@ class ViewController: UIViewController {
 
     @IBAction func equal() {
         switch calculatorBrain.isExpressionCorrect {
-        case .some(.newCalcul):
-            createAlertController(error: calculatorBrain.isExpressionCorrect!)
-        case .some(.correctExpression):
-            createAlertController(error: calculatorBrain.isExpressionCorrect!)
-        case .some(.incorrectExpression):
-            createAlertController(error: calculatorBrain.isExpressionCorrect!)
-        case .none:
+        case .newCalcul:
+            createAlertController(error: calculatorBrain.isExpressionCorrect)
+        case .correctExpression:
+            createAlertController(error: calculatorBrain.isExpressionCorrect)
+        case .incorrectExpression:
+            createAlertController(error: calculatorBrain.isExpressionCorrect)
+        case .correct:
             calculate()
         }
     }
