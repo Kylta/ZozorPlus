@@ -41,6 +41,7 @@ class Zozor_Tests: XCTestCase {
 
         // Act
         sut.addNewNumber(.number(2))
+        XCTAssertNil(sut.isExpressionCorrect)
         _ = sut.addNewOperator("-")
         XCTAssertFalse(sut.canAddOperator)
         sut.addNewNumber(.number(2))
@@ -50,6 +51,43 @@ class Zozor_Tests: XCTestCase {
         XCTAssertEqual(sut.result, "0.0")
     }
 
+    func test_calculWithDot_PlusAndMinusOperatorGetDoubleResult() {
+        // Arrange
+        let sut = makeSUT()
+
+        // Act
+        sut.addNewNumber(.number(2))
+        sut.addNewNumber(.dot("."))
+        sut.addNewNumber(.number(8))
+        _ = sut.addNewOperator("-")
+        XCTAssertFalse(sut.canAddOperator)
+        _ = sut.addNewOperator("-")
+        XCTAssertEqual(sut.isExpressionCorrect, .correctExpression)
+        sut.addNewNumber(.number(2))
+        sut.addNewNumber(.dot("."))
+        sut.addNewNumber(.number(6))
+        sut.calculateTotal()
+
+        // Assert
+        XCTAssertEqual(sut.result, "0.2")
+    }
+
+    func test_clear_getEmptyArrays() {
+        // Arrange
+        let sut = makeSUT()
+
+        // Act
+        sut.addNewNumber(.number(2))
+        _ = sut.addNewOperator("-")
+        XCTAssertFalse(sut.canAddOperator)
+        sut.addNewNumber(.number(2))
+        sut.clear()
+
+        // Assert
+        XCTAssertEqual(sut.stringNumbers, [""])
+        XCTAssertEqual(sut.operators, ["+"])
+        XCTAssertFalse(sut.canAddOperator)
+    }
     fileprivate func makeSUT() -> CalculatorBrainModel {
         return CalculatorBrainModel()
     }
