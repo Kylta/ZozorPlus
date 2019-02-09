@@ -27,7 +27,7 @@ class CountOnMeControllerTests: XCTestCase {
             XCTAssertEqual(sut.textView.text, "\(tag)")
         }
 
-        let samplesOperators = [".", "+", "-", "C"]
+        let samplesOperators = [".", "+", "-"]
         samplesOperators.forEach { _operator in
             let (sut, button) = expect(tag: 1)
 
