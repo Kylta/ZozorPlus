@@ -13,7 +13,7 @@ class CountOnMeControllerTests: XCTestCase {
 
     private let sb = UIStoryboard(name: "Main", bundle: nil)
 
-    func test_initController_emptyScreen() {
+    func test_initController_withDisplayedCalcul() {
         let sut = makeSUT()
 
         XCTAssertEqual(sut.textView.text, "1+1=2")
