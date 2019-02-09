@@ -27,7 +27,7 @@ class CountOnMeControllerTests: XCTestCase {
             XCTAssertEqual(sut.textView.text, "\(tag)")
         }
 
-        let samplesOperators = [".", "+", "-"]
+        let samplesOperators = [".", "+", "-", "C"]
         samplesOperators.forEach { _operator in
             let (sut, button) = expect(tag: 1)
 
@@ -70,14 +70,14 @@ class CountOnMeControllerTests: XCTestCase {
     }
 
     func test_errors_displayedInViewController() {
-        // Test1
+        // new Calcul
         let sut1 = makeSUT()
 
         sut1.equal()
 
         XCTAssertEqual(sut1.calculatorBrain.isExpressionCorrect, .newCalcul)
 
-        // Test2
+        // Incorrect Expression
         let (sut2, button2) = expect(tag: 1)
 
         button2.withTitle("+")
@@ -86,22 +86,21 @@ class CountOnMeControllerTests: XCTestCase {
 
         XCTAssertEqual(sut2.calculatorBrain.isExpressionCorrect, .incorrectExpression)
 
-        // Test3
+        // Correct
         let (sut3, button3) = expect(tag: 1)
 
         button3.withTitle("+")
         sut3.performOperator(button3)
-        button3.withTitle("+")
-        sut3.performOperator(button3)
+        button3.withTag(1)
+        sut3.tappedNumberButton(button3)
 
-        XCTAssertEqual(sut2.calculatorBrain.isExpressionCorrect, .incorrectExpression)
+        XCTAssertEqual(sut3.calculatorBrain.isExpressionCorrect, .correct)
     }
 
     private func expect(tag: Int) -> (sut: ViewController, button: UIButton) {
         let sut = makeSUT()
         let button = UIButton(type: .system)
-        button.tag = tag
-        button.sendActions(for: .touchUpInside)
+        button.withTag(tag)
         sut.tappedNumberButton(button)
 
         return (sut, button)
