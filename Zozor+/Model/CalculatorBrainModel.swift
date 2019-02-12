@@ -14,12 +14,9 @@ class CalculatorBrainModel {
     var result = ""
 
     var isExpressionCorrect: Error {
-        if let stringNumber = stringNumbers.last, stringNumber.isEmpty {
-            if stringNumbers.count == 1 {
-                return .newCalcul
-            } else {
-                return .incorrectExpression
-            }
+        if let stringNumber = stringNumbers.last,
+            stringNumber.isEmpty {
+            return stringNumbers.count == 1 ? .newCalcul : .incorrectExpression
         }
         return .correct
     }

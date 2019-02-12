@@ -81,7 +81,7 @@ class ViewController: UIViewController {
         if calculatorBrain.canAddOperator {
             textView.text = calculatorBrain.addNewOperator(_operator)
         } else {
-            createAlertController(error: .incorrectExpression)
+            createAlertController(error: calculatorBrain.isExpressionCorrect)
         }
     }
 
