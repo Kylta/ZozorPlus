@@ -56,7 +56,7 @@ class ViewController: UIViewController {
             containsDot = false
         case "C":
             textView.text = calculatorBrain.removeLastNumbers()
-        case "." where containsDot == false:
+        case "." where !containsDot:
             addOperator(_operator: sender.currentTitle!)
             containsDot = true
         default: break
@@ -73,7 +73,7 @@ class ViewController: UIViewController {
             calculate()
         }
     }
-    
+
     // MARK: - Selector
 
     @objc fileprivate func handleResult() {
