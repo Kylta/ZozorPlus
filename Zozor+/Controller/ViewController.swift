@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     var calculatorBrain = CalculatorBrainModel()
+    private var containsDot = false
 
     // Lifecycle
 
@@ -46,14 +47,18 @@ class ViewController: UIViewController {
         switch sender.currentTitle {
         case "+":
             addOperator(_operator: sender.currentTitle!)
+            containsDot = false
         case "-":
             addOperator(_operator: sender.currentTitle!)
+            containsDot = false
         case "AC":
             clear()
+            containsDot = false
         case "C":
             textView.text = calculatorBrain.removeLastNumbers()
-        case ".":
+        case "." where containsDot == false:
             addOperator(_operator: sender.currentTitle!)
+            containsDot = true
         default: break
         }
     }
@@ -68,7 +73,7 @@ class ViewController: UIViewController {
             calculate()
         }
     }
-
+    
     // MARK: - Selector
 
     @objc fileprivate func handleResult() {
